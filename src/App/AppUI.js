@@ -7,6 +7,10 @@ import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
 import { TodoForm } from "../TodoForm";
+import { TodosError } from "../TodosError";
+import { EmptyTodos } from "../EmptyTodos";
+import { TodosLoading } from "../TodosLoading";
+
 
 function AppUI() {
     const {
@@ -25,9 +29,9 @@ function AppUI() {
             <TodoSearch />
 
             <TodoList>
-                {error && <p>An error has ocurred.</p>}
-                {loading && <p>Tihs page is loading.</p>}
-                {(!loading && !searchedTodos.length) && <p>Create your first todo</p>}
+                {error && <TodosError error={error} />}
+                {loading && <TodosLoading />}
+                {(!loading && !searchedTodos.length) && <EmptyTodos />}
 
                 {searchedTodos.map(todo => (
                 <TodoItem
